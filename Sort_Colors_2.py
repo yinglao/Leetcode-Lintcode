@@ -1,9 +1,10 @@
 #Given an array of n objects with k different colors (numbered from 1 to k), sort them so that objects of the same color are adjacent, with the colors in the order 1, 2, ... k.
 #Given colors=[3, 2, 2, 1, 4], k=4, your code should sort colors in-place to [1, 2, 2, 3, 4].
 #A rather straight forward solution is a two-pass algorithm using counting sort. That will cost O(k) extra memory. Can you do it without using extra memory?
-#
+#http://www.lintcode.com/en/problem/sort-colors-ii/
 
-
+# 方法一：数一下每种color各有多少个，然后重新填colors中各个元素。
+# T(n) = O(n), S(n) = O(k)
 class Solution:
     """
     @param colors: A list of integer
@@ -23,7 +24,11 @@ class Solution:
                 colors[i] = color
                 i += 1
                 
-    def sortColors23(self, colors, k):
+                
+                
+# 方法二：利用两个指针，每次遍历colors，将当前区间的最大值和最小值分别排到最前面和最后面，相当于完成了两种颜色的排序，然后更新区间范围，进入下一轮遍历。
+# T(n) = O(nk), S(n) = O(1)
+    def sortColors23(self, colors, k):
         # write your code here
         if not colors:
             return
@@ -51,12 +56,15 @@ class Solution:
             
     def swap(self, nums, i, j):
         nums[i], nums[j] = nums[j], nums[i]
-        
+   
+
+# 方法三：Divide and Conquer
+# 设计一个helper 函数将colors 分成两部分，左边的颜色数小于或等于k//2, 右边的颜色数大于k//2. 然后对左右两部分各自apply helper函数。
+# helper函数的实现：利用左右两个指针l, r，当colors[l] > k//2, 交换左右指针对应的值，r--; 当color[l] <= k//2, l++
+# T(n) = nlog(k), S(n) = O(1)
     def sortColors2(self, colors, k):
         # write your code here
         self.helper(colors, 0, len(colors) - 1, 1, k)
-        
-        
         
     def helper(self, colors, startIndex, endIndex, colorFrom, colorTo):
         if colorTo == colorFrom:
