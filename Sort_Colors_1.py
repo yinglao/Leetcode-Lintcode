@@ -1,3 +1,6 @@
+
+# 数一下0，1，2各有多少个，然后重新填nums
+# T(n) = O(n), S(n) = O(1)
 class Solution:
     """
     @param nums: A list of integer which is 0, 1 or 2 
@@ -19,7 +22,8 @@ class Solution:
             
             
     
-        
+# 用两个指针遍历nums，将0放到前面，2放到后面
+# T(n) = O(n), S(n) = O(1)
     def sortColors(self, nums):
         # write your code here
         if not nums:
