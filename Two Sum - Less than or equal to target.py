@@ -10,7 +10,10 @@
 #7 + 11 < 24
 #7 + 15 < 25
 #http://www.lintcode.com/en/problem/two-sum-less-than-or-equal-to-target/#
-
+#先将nums 排序
+#然后设立左右两个指针l, r
+#如果nums[l] + nums[r] = v > target: 意味着r前所有的l都会使v > target， 所以使l--
+#若v <= target: 意味着所有的l前所有的r都会使v <= target， 所以count += r - l (包括l+1, l+2, ... , r), 然后 l ++
 
 
 
